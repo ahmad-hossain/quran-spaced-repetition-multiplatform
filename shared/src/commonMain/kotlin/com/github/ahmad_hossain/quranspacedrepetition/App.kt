@@ -1,3 +1,5 @@
+package com.github.ahmad_hossain.quranspacedrepetition
+
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -32,5 +34,3 @@ fun App() {
         }
     }
 }
-
-expect fun getPlatformName(): String

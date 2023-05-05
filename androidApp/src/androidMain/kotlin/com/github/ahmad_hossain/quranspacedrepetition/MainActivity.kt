@@ -1,6 +1,5 @@
-package com.myapplication
+package com.github.ahmad_hossain.quranspacedrepetition
 
-import MainView
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
