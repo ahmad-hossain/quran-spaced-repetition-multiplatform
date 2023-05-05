@@ -2,7 +2,7 @@ rootProject.name = "Quran Hifz Revision"
 
 include(":androidApp")
 include(":shared")
-include(":desktopApp")
+//include(":desktopApp")
 
 pluginManagement {
     repositories {
