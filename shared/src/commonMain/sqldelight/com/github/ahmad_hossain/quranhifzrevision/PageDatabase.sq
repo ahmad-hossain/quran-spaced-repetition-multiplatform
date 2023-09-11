@@ -1,0 +1,25 @@
+import kotlin.Int;
+
+CREATE TABLE Page (
+    pageNumber INTEGER AS Int NOT NULL PRIMARY KEY,
+    interval INTEGER AS Int NOT NULL,
+    repetitions INTEGER AS Int NOT NULL,
+    eFactor REAL NOT NULL,
+    dueDate INTEGER
+);
+
+getPages:
+SELECT * FROM Page;
+
+getPagesDueOn:
+SELECT * FROM Page
+WHERE dueDate <= :currEpochDay;
+
+insertPage:
+INSERT OR REPLACE
+INTO Page
+VALUES (?, ?, ?, ?, ?);
+
+deletePageByNumber:
+DELETE FROM Page
+WHERE pageNumber = :pageNumber;

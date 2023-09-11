@@ -1,7 +1,10 @@
+val sqlDelightVersion = "2.0.0"
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("app.cash.sqldelight") version "2.0.0"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -41,6 +44,16 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+        val androidMain by getting {
+            dependencies {
+                implementation("app.cash.sqldelight:android-driver:$sqlDelightVersion")
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation("app.cash.sqldelight:native-driver:$sqlDelightVersion")
+            }
+        }
     }
 }
 
@@ -49,5 +62,13 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 24
+    }
+}
+
+sqldelight {
+    databases {
+        create("PageDatabase") {
+            packageName.set("com.github.ahmad_hossain.quranhifzrevision")
+        }
     }
 }
