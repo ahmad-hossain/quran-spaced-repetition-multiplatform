@@ -5,15 +5,13 @@ import app.cash.sqldelight.coroutines.mapToList
 import app.cash.sqldelight.db.SqlCursor
 import app.cash.sqldelight.db.SqlDriver
 import com.github.ahmad_hossain.quranhifzrevision.PageDatabase
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.now
 import com.github.ahmadhossain.quranhifzrevision.Page
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.todayIn
 
 class PageDataSource(
     db: PageDatabase,
@@ -24,7 +22,7 @@ class PageDataSource(
     fun getPages(): Flow<List<Page>> =
         queries.getPages().asFlow().mapToList(Dispatchers.IO)
 
-    fun getPagesDueToday(): Flow<List<Page>> = getPagesDueOn(Clock.System.todayIn(TimeZone.currentSystemDefault()))
+    fun getPagesDueToday(): Flow<List<Page>> = getPagesDueOn(LocalDate.now())
 
     fun getPagesDueOn(date: LocalDate): Flow<List<Page>> =
         queries.getPagesDueOn(date.toEpochDays().toLong()).asFlow().mapToList(Dispatchers.IO)

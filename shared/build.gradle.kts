@@ -39,6 +39,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
                 implementation("app.cash.sqldelight:coroutines-extensions:2.0.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
+                implementation("app.cash.sqldelight:primitive-adapters:$sqlDelightVersion")
             }
         }
         val commonTest by getting {
