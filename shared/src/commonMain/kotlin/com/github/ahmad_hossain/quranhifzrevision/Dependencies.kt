@@ -7,13 +7,15 @@ import com.github.ahmadhossain.quranhifzrevision.Page
 
 abstract class Dependencies {
     abstract val driver: SqlDriver
-    val database: PageDatabase = PageDatabase(
-        driver,
-        Page.Adapter(
-            pageNumberAdapter = IntColumnAdapter,
-            intervalAdapter = IntColumnAdapter,
-            repetitionsAdapter = IntColumnAdapter
+    val database: PageDatabase by lazy {
+        PageDatabase(
+            driver,
+            Page.Adapter(
+                pageNumberAdapter = IntColumnAdapter,
+                intervalAdapter = IntColumnAdapter,
+                repetitionsAdapter = IntColumnAdapter
+            )
         )
-    )
-    val pageDataSource: PageDataSource = PageDataSource(database, driver)
+    }
+    val pageDataSource by lazy { PageDataSource(database, driver) }
 }
