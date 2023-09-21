@@ -1,6 +1,7 @@
 package com.github.ahmad_hossain.quranhifzrevision.feature_pages.data
 
 import android.content.Context
+import androidx.sqlite.db.SupportSQLiteDatabase
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.github.ahmad_hossain.quranhifzrevision.PageDatabase
@@ -12,6 +13,12 @@ actual class DatabaseDriverFactory(
     actual fun create(): SqlDriver = AndroidSqliteDriver(
         PageDatabase.Schema,
         context,
-        PageUtil.DATABASE_NAME
+        PageUtil.DATABASE_NAME,
+        callback = object : AndroidSqliteDriver.Callback(PageDatabase.Schema) {
+            override fun onConfigure(db: SupportSQLiteDatabase) {
+                super.onConfigure(db)
+                db.enableWriteAheadLogging()
+            }
+        }
     )
 }
