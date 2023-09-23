@@ -9,9 +9,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.ahmad_hossain.quranhifzrevision.Greeting
+import com.github.ahmad_hossain.quranhifzrevision.Strings
 import com.github.ahmad_hossain.quranhifzrevision.android.ui.theme.QuranHifzRevisionTheme
+import dev.icerock.moko.resources.StringResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingView(text: String) {
     Text(text = text)
+}
+
+@Composable
+fun stringResource(id: StringResource, vararg args: Any): String {
+    return Strings(LocalContext.current).get(id, args.toList())
 }
 
 @Preview

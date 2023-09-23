@@ -5,6 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("app.cash.sqldelight") version "2.0.0"
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -30,6 +31,8 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            export("dev.icerock.moko:resources:0.23.0")
+            export("dev.icerock.moko:graphics:0.9.0")
         }
     }
     
@@ -40,6 +43,7 @@ kotlin {
                 implementation("app.cash.sqldelight:coroutines-extensions:2.0.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
                 implementation("app.cash.sqldelight:primitive-adapters:$sqlDelightVersion")
+                api("dev.icerock.moko:resources:0.23.0")
             }
         }
         val commonTest by getting {
@@ -74,4 +78,9 @@ sqldelight {
             packageName.set("com.github.ahmad_hossain.quranhifzrevision")
         }
     }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.github.ahmad_hossain.quranhifzrevision"
+    multiplatformResourcesClassName = "SharedRes"
 }
