@@ -8,6 +8,7 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
+        mavenLocal() // For local sqldelight native-driver dependency
         google()
         mavenCentral()
     }
