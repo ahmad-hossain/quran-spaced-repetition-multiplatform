@@ -1,4 +1,4 @@
-package com.github.ahmad_hossain.quranhifzrevision.android.feature_pages.presentation.components
+package com.github.ahmad_hossain.quranhifzrevision.android.feature_pages.presentation
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
