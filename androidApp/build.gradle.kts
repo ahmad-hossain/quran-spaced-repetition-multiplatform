@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.google.devtools.ksp") version "1.8.21-1.0.11"
 }
 
 android {
@@ -30,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -46,4 +47,11 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.activity:activity-compose:1.3.1")
     implementation("androidx.compose.material:material-icons-extended")
+
+    // Compose Destinations
+    implementation("io.github.raamcosta.compose-destinations:core:1.7.17-beta")
+    ksp("io.github.raamcosta.compose-destinations:ksp:1.7.17-beta")
+
+    // Splash Screen Compat
+    implementation("androidx.core:core-splashscreen:1.0.0")
 }
