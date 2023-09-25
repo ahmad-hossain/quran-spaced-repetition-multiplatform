@@ -14,8 +14,13 @@ kotlin {
 
     android {
         compilations.all {
+            // Fixes 'target compatibility' compile-time error
+            tasks.withType(JavaCompile::class.java) {
+                targetCompatibility = "11"
+                sourceCompatibility = "11"
+            }
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "11"
             }
         }
     }
@@ -44,6 +49,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
                 implementation("app.cash.sqldelight:primitive-adapters:$sqlDelightVersion")
                 api("dev.icerock.moko:resources:0.23.0")
+                api("com.rickclephas.kmm:kmm-viewmodel-core:1.0.0-ALPHA-10")
             }
         }
         val commonTest by getting {
