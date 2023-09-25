@@ -4,6 +4,10 @@ plugins {
     id("com.google.devtools.ksp") version "1.8.21-1.0.11"
 }
 
+val versionMajor = 1
+val versionMinor = 0
+val versionPatch = 1
+
 android {
     namespace = "com.github.ahmad_hossain.quranhifzrevision.android"
     compileSdk = 33
@@ -11,8 +15,8 @@ android {
         applicationId = "com.github.ahmad_hossain.quranspacedrepetition"
         minSdk = 24
         targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = Integer.parseInt("$versionMajor$versionMinor$versionPatch")
+        versionName = "$versionMajor.$versionMinor.$versionPatch"
     }
     buildFeatures {
         compose = true
