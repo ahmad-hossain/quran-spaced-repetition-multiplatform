@@ -11,9 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.github.ahmad_hossain.quranhifzrevision.Greeting
 import com.github.ahmad_hossain.quranhifzrevision.Strings
+import com.github.ahmad_hossain.quranhifzrevision.android.feature_pages.presentation.NavGraphs
 import com.github.ahmad_hossain.quranhifzrevision.android.ui.theme.QuranHifzRevisionTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dev.icerock.moko.resources.StringResource
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingView(Greeting().greet())
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }

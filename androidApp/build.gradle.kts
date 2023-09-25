@@ -31,6 +31,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -54,4 +55,8 @@ dependencies {
 
     // Splash Screen Compat
     implementation("androidx.core:core-splashscreen:1.0.0")
+
+    // Kotlinx datetime
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }

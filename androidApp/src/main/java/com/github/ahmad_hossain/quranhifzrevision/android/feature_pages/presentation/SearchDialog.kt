@@ -20,7 +20,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.window.DialogProperties
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
 import com.github.ahmad_hossain.quranhifzrevision.android.stringResource
-import dev.icerock.moko.resources.desc.StringDesc
+import dev.icerock.moko.resources.StringResource
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -28,7 +28,7 @@ fun SearchDialog(
     modifier: Modifier = Modifier,
     isVisible: Boolean,
     searchQuery: String,
-    searchQueryError: StringDesc?,
+    searchQueryError: StringResource?,
     onSearchQueryChanged: (String) -> Unit,
     onSearchDialogConfirmed: () -> Unit,
     onSearchDialogDismissed: () -> Unit,
@@ -59,7 +59,6 @@ fun SearchDialog(
             LaunchedEffect(Unit) {
                 focusRequester.requestFocus()
             }
-            val context = LocalContext.current
 
             OutlinedTextField(
                 modifier = Modifier.focusRequester(focusRequester),
@@ -79,7 +78,7 @@ fun SearchDialog(
                 ),
                 singleLine = true,
                 isError = searchQueryError != null,
-                supportingText = if (searchQueryError != null) {{ Text(searchQueryError.toString(context)) }} else null,
+                supportingText = if (searchQueryError != null) {{ Text(stringResource(searchQueryError)) }} else null,
                 trailingIcon = if (searchQueryError != null) {{ Icon(imageVector = Icons.Outlined.Error, contentDescription = null) }} else null,
             )
         }
