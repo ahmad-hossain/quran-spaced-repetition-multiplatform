@@ -74,7 +74,7 @@ android {
     namespace = "com.github.ahmad_hossain.quranhifzrevision"
     compileSdk = 33
     defaultConfig {
-        minSdk = 24
+        minSdk = 21
     }
 }
 

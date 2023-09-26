@@ -13,7 +13,7 @@ android {
     compileSdk = 33
     defaultConfig {
         applicationId = "com.github.ahmad_hossain.quranspacedrepetition"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 33
         versionCode = Integer.parseInt("$versionMajor$versionMinor$versionPatch")
         versionName = "$versionMajor.$versionMinor.$versionPatch"
@@ -31,7 +31,12 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        getByName("debug") {
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
