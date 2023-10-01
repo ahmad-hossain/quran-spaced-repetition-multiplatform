@@ -7,6 +7,8 @@ import app.cash.sqldelight.db.SqlDriver
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.data.data_source.PageDataSource
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.PagesViewModel
 import com.github.ahmad_hossain.quranhifzrevision.feature_settings.domain.repository.SettingsRepository
+import com.github.ahmad_hossain.quranhifzrevision.feature_settings.domain.use_case.ChangePageRange
+import com.github.ahmad_hossain.quranhifzrevision.feature_settings.presentation.SettingsViewModel
 import com.github.ahmadhossain.quranhifzrevision.Page
 
 abstract class Dependencies {
@@ -25,4 +27,10 @@ abstract class Dependencies {
     abstract val dataStore: Lazy<DataStore<Preferences>>
     val settingsRepository by lazy { SettingsRepository(dataStore.value) }
     val pagesViewModel: PagesViewModel by lazy { PagesViewModel(pageDataSource) }
+    val settingsViewModel: SettingsViewModel by lazy {
+        SettingsViewModel(
+            settingsRepository,
+            ChangePageRange(settingsRepository, pageDataSource)
+        )
+    }
 }
