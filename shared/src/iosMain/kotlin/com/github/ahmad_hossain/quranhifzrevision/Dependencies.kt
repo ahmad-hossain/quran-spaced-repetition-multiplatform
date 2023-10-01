@@ -8,5 +8,5 @@ import com.github.ahmad_hossain.quranhifzrevision.feature_settings.data.dataStor
 
 class IosDependencies : Dependencies() {
     override val driver: SqlDriver = DatabaseDriverFactory().create()
-    override val dataStore: DataStore<Preferences> by lazy { dataStore() }
+    override val dataStore: Lazy<DataStore<Preferences>> = lazy { dataStore() }
 }

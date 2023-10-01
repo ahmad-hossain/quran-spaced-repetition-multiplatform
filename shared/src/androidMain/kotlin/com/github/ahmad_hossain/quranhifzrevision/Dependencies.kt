@@ -10,5 +10,5 @@ class AndroidDependencies(
     context: Context,
 ) : Dependencies() {
     override val driver = DatabaseDriverFactory(context).create()
-    override val dataStore: DataStore<Preferences> by lazy { dataStore(context) }
+    override val dataStore: Lazy<DataStore<Preferences>> = lazy { dataStore(context) }
 }

@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import app.cash.sqldelight.adapter.primitive.IntColumnAdapter
 import app.cash.sqldelight.db.SqlDriver
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.data.data_source.PageDataSource
+import com.github.ahmad_hossain.quranhifzrevision.feature_settings.domain.repository.SettingsRepository
 import com.github.ahmadhossain.quranhifzrevision.Page
 
 abstract class Dependencies {
@@ -20,5 +21,6 @@ abstract class Dependencies {
         )
     }
     val pageDataSource by lazy { PageDataSource(database, driver) }
-    abstract val dataStore: DataStore<Preferences>
+    abstract val dataStore: Lazy<DataStore<Preferences>>
+    val settingsRepository by lazy { SettingsRepository(dataStore.value) }
 }
