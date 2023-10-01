@@ -6,7 +6,6 @@ plugins {
     id("com.android.library")
     id("app.cash.sqldelight") version "2.0.0"
     id("dev.icerock.mobile.multiplatform-resources")
-    kotlin("plugin.serialization") version "1.9.0"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -51,8 +50,7 @@ kotlin {
                 implementation("app.cash.sqldelight:primitive-adapters:$sqlDelightVersion")
                 api("dev.icerock.moko:resources:0.23.0")
                 api("com.rickclephas.kmm:kmm-viewmodel-core:1.0.0-ALPHA-10")
-                implementation("androidx.datastore:datastore-core:1.1.0-alpha02")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+                implementation("androidx.datastore:datastore-preferences-core:1.1.0-alpha02")
             }
         }
         val commonTest by getting {
