@@ -86,7 +86,7 @@ val BottomBarHeight = 80.dp
 @Composable
 fun PagesScreen(
     navigator: DestinationsNavigator,
-    viewModel: PagesViewModel = PagesViewModel(deps.pageDataSource)
+    viewModel: PagesViewModel = deps.pagesViewModel,
 ) {
     val state by viewModel.state.collectAsState()
     val lazyListState = rememberLazyListState()
