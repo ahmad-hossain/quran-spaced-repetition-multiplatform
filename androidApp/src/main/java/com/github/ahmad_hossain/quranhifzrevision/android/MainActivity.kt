@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat.startActivity
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
 import com.github.ahmad_hossain.quranhifzrevision.Strings
-import com.github.ahmad_hossain.quranhifzrevision.android.feature_pages.presentation.NavGraphs
 import com.github.ahmad_hossain.quranhifzrevision.android.feature_pages.presentation.PermissionDialog
 import com.github.ahmad_hossain.quranhifzrevision.android.ui.theme.QuranHifzRevisionTheme
 import com.ramcosta.composedestinations.DestinationsNavHost

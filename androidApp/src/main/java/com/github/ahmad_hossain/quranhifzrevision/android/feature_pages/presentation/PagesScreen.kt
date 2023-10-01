@@ -61,6 +61,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
 import com.github.ahmad_hossain.quranhifzrevision.android.App.Companion.deps
+import com.github.ahmad_hossain.quranhifzrevision.android.destinations.SettingsScreenDestination
 import com.github.ahmad_hossain.quranhifzrevision.android.stringResource
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.PagesEvent
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.PagesViewModel
@@ -161,7 +162,7 @@ fun PagesScreen(
             CustomBottomBar(
                 modifier = Modifier.offset { IntOffset(x = 0, y = -bottomBarOffsetHeightPx.value.roundToInt()) },
                 currentScreen = Screen.Home,
-                onSettingsClicked = { TODO() },
+                onSettingsClicked = { navigator.navigate(SettingsScreenDestination) },
             )
         },
         floatingActionButton = {
