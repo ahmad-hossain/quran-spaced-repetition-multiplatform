@@ -12,25 +12,23 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateViewModel var viewModel: SettingsViewModel
-    @State var notificationDate: Date
-    let strings: SharedRes.strings
-
-    init() {
-        self.strings = SharedRes.strings()
-        let deps = Constants.dependencies
-        _viewModel = StateViewModel(
-            wrappedValue: SettingsViewModel(
-                settingsRepo: deps.settingsRepository,
-                changePageRangeUseCase: ChangePageRange(
-                    settingsRepo: deps.settingsRepository,
-                    pageRepo: deps.pageDataSource
-                )
-            )
+    @StateViewModel var viewModel = SettingsViewModel(
+        settingsRepo: Constants.dependencies.settingsRepository,
+        changePageRangeUseCase: ChangePageRange(
+            settingsRepo: Constants.dependencies.settingsRepository,
+            pageRepo: Constants.dependencies.pageDataSource
         )
-        let date = _viewModel.wrappedValue.stateValue.userPreferences.notificationTime.toDate()
-        _notificationDate = State(initialValue: date)
+    )
+    private var notificationDateBinding: Binding<Date> {
+        Binding(
+            get: { viewModel.stateValue.userPreferences.notificationTime.toDate() },
+            set: {
+                viewModel.onEvent(event: SettingsEvent.TimePickerTimeChanged(time: DateUtilKt.toLocalTime($0)))
+            }
+        )
     }
+
+    let strings = SharedRes.strings()
 
     var body: some View {
         Form {
@@ -53,11 +51,10 @@ struct SettingsView: View {
                 }
             }
 
-            // TODO: Send new time to VM
             Section(header: Text(getString(strings.notifications))) {
                 DatePicker(
                     getString(strings.notification_time_setting),
-                    selection: $notificationDate,
+                    selection: notificationDateBinding,
                     displayedComponents: .hourAndMinute
                 )
             }
