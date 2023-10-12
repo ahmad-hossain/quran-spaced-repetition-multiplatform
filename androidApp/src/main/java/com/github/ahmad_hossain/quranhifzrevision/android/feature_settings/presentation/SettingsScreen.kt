@@ -147,7 +147,7 @@ fun SettingsScreen(
                 }
             )
             Divider()
-            SettingsSectionHeadline(text = "Backup")
+            SettingsSectionHeadline(text = stringResource(SharedRes.strings.backup))
             ListItem(
                 modifier = Modifier.clickable { viewModel.onEvent(SettingsEvent.ExportDataClicked) },
                 leadingContent = { Icon(Icons.Default.Upload, contentDescription = null) },

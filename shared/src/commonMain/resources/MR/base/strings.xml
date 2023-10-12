@@ -36,6 +36,7 @@
     <string name="empty_field_error">Field must not be empty</string>
     <string name="start_greater_than_end_error">Must be less than end page</string>
     <string name="end_less_than_start_error">Must be greater than start page</string>
+    <string name="backup">Backup</string>
     <string name="notifications">Notifications</string>
     <string name="headline_export_data">Export data</string>
     <string name="supporting_export_data">Export revision data to a file</string>
