@@ -13,6 +13,7 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		49DA52A72AD449A50074B7AC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA52A62AD449A50074B7AC /* HomeView.swift */; };
 		49DA52A92AD449B10074B7AC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA52A82AD449B10074B7AC /* SettingsView.swift */; };
+		49F5A8532AD74DF600D16FA7 /* KMMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F5A8522AD74DF600D16FA7 /* KMMViewModel.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +23,7 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		49DA52A62AD449A50074B7AC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		49DA52A82AD449B10074B7AC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		49F5A8522AD74DF600D16FA7 /* KMMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMViewModel.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				7555FF82242A565900829871 /* ContentView.swift */,
 				49DA52A62AD449A50074B7AC /* HomeView.swift */,
 				49DA52A82AD449B10074B7AC /* SettingsView.swift */,
+				49F5A8522AD74DF600D16FA7 /* KMMViewModel.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
@@ -216,6 +219,7 @@
 				49DA52A72AD449A50074B7AC /* HomeView.swift in Sources */,
 				49DA52A92AD449B10074B7AC /* SettingsView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				49F5A8532AD74DF600D16FA7 /* KMMViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

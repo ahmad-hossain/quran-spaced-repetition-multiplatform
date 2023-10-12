@@ -42,6 +42,7 @@
     <string name="supporting_export_data">Export revision data to a file</string>
     <string name="headline_import_data">Import data</string>
     <string name="supporting_import_data">Import revision data from an exported file</string>
+    <string name="backup_footer">Backup your data or restore data from a backup</string>
     <string name="error_null_uri">Error: Uri is null</string>
     <string name="error_invalid_file">Error: Invalid File</string>
     <string name="revision_data_reset_warning">WARNING: SOME REVISION DATA MAY BE DELETED</string>

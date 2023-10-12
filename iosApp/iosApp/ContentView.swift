@@ -2,7 +2,6 @@ import shared
 import SwiftUI
 
 struct ContentView: View {
-
     var body: some View {
         TabView {
             HomeView()
@@ -15,6 +14,10 @@ struct ContentView: View {
                 }
         }
     }
+}
+
+func getString(_ id: StringResource, args: [Any] = []) -> String {
+    return Strings().get(id: id, args: args)
 }
 
 struct ContentView_Previews: PreviewProvider {
