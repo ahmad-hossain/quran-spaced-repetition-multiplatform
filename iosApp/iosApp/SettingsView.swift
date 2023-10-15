@@ -42,7 +42,7 @@ struct SettingsView: View {
                     let buttonBgOpacity = colorScheme == .dark ? 1 : 0.6
                     // TODO: handle on-click
                     Button("\(prefs.startPage) - \(prefs.endPage)") {}
-                        .accentColor(colorScheme == .dark ? .white : .black)
+                        .accentColor(.primary)
                         .padding(.horizontal, 11)
                         .padding(.vertical, 8)
                         .background(Color(buttonBgColor).opacity(buttonBgOpacity))
