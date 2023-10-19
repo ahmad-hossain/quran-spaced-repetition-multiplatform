@@ -49,6 +49,7 @@ struct SettingsView: View {
                         .cornerRadius(7)
                         .buttonStyle(.borderless)
                 }
+                .padding(.vertical, -1)
             }
 
             Section(header: Text(getString(strings.notifications))) {
