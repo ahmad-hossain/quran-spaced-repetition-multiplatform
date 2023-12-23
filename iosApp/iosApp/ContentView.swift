@@ -13,6 +13,13 @@ struct ContentView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        .onAppear {
+            // Fixes transparent bottom-bar
+            if #available(iOS 15.0, *) {
+                let appearance = UITabBarAppearance()
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+            }
+        }
     }
 }
 

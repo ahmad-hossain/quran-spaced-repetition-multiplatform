@@ -13,32 +13,52 @@ import SwiftUI
 struct HomeView: View {
     @StateViewModel var viewModel = PagesViewModel(dataSource: Constants.dependencies.pageDataSource)
     let strings = SharedRes.strings()
-
+    private var selectedTabBinding: Binding<Int> {
+        Binding(
+            get: { Int(viewModel.stateValue.selectedTab.ordinal) },
+            set: {
+                viewModel.onEvent(event: PagesEvent.TabClicked(
+                    tab: UiTabs.values().get(index: Int32($0))!)
+                )
+            }
+        )
+    }
+    
     var body: some View {
         NavigationView {
-            List {
-                Section {
-                    // TODO: add selection for TODAY and ALL pages
-                    ForEach(viewModel.stateValue.allPages, id: \.pageNumber) { page in
-                        HStack(spacing: 0) {
-                            Text("")
-                            PageItem(page: page)
-                        }
-                    }
+            VStack {
+                Picker("", selection: selectedTabBinding) {
+                    Text(getString(strings.today)).tag(0)
+                    Text(getString(strings.all)).tag(1)
                 }
-                header: {
-                    HStack {
-                        TableCell(getString(strings.page_number_abbrev))
-                        TableCell(getString(strings.interval))
-                        TableCell(getString(strings.repetitions))
-                        TableCell(getString(strings.due_date))
+                .pickerStyle(.segmented)
+                PagesList(pages: viewModel.stateValue.displayedPages)
+            }
+            .navigationBarTitle(getString(strings.revision), displayMode: .inline)
+        }
+    }
+
+    func PagesList(pages: [Page]) -> some View {
+        List {
+            Section {
+                ForEach(pages, id: \.pageNumber) { page in
+                    HStack(spacing: 0) {
+                        Text("")
+                        PageItem(page: page)
                     }
                 }
             }
-            .listStyle(.plain)
-            .padding(.horizontal, -20)
-            .navigationBarTitle(getString(strings.revision))
+            header: {
+                HStack {
+                    TableCell(getString(strings.page_number_abbrev))
+                    TableCell(getString(strings.interval))
+                    TableCell(getString(strings.repetitions))
+                    TableCell(getString(strings.due_date))
+                }
+            }
         }
+        .listStyle(.plain)
+        .padding(.horizontal, -20)
     }
 }
 
