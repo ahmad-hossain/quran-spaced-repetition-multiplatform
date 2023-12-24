@@ -10,10 +10,11 @@ import SwiftUI
 
 struct PageItem: View {
     var page: Page
+    var onClick: () -> Void
 
     var body: some View {
         Button(
-            action: {},
+            action: { self.onClick() },
             label: {
                 HStack {
                     TableCell(String(page.pageNumber))

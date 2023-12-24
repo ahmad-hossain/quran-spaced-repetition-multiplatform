@@ -23,7 +23,16 @@ struct HomeView: View {
             }
         )
     }
-    
+
+    private var showDialogBinding: Binding<Bool> {
+        Binding(
+            get: { viewModel.stateValue.isGradeDialogVisible },
+            set: { _ in
+                viewModel.onEvent(event: PagesEvent.GradeDialogDismissed())
+            }
+        )
+    }
+
     var body: some View {
         NavigationView {
             VStack {
@@ -34,6 +43,33 @@ struct HomeView: View {
                 .pickerStyle(.segmented)
                 PagesList(pages: viewModel.stateValue.displayedPages)
             }
+            .customConfirmDialog(isPresented: showDialogBinding, actions: {
+                Text(getString(strings.grade_your_review))
+                    .font(.callout.weight(.semibold))
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Color(UIColor.gray))
+                Text(String(viewModel.stateValue.lastClickedPageNumber))
+                    .font(.callout)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Color(UIColor.gray))
+                Spacer().frame(height: 16)
+                Divider()
+                let gradeOptions = GradeOption.companion.gradeOptions
+                let gradeClickAction: (Int32) -> Void = {
+                    viewModel.onEvent(event: PagesEvent.GradeSelected(grade: $0))
+                    viewModel.onEvent(event: PagesEvent.GradeDialogConfirmed())
+                }
+                ForEach(gradeOptions, id: \.grade) { gradeOption in
+                    let emoji = gradeOption.emoji
+                    let textRes = gradeOption.textRes
+
+                    if gradeOption.grade == gradeOptions.last!.grade {
+                        GradeButton(emoji: emoji, textRes: textRes) { gradeClickAction(gradeOption.grade) }
+                    } else {
+                        GradeItem(emoji: emoji, textRes: textRes) { gradeClickAction(gradeOption.grade) }
+                    }
+                }
+            })
             .navigationBarTitle(getString(strings.revision), displayMode: .inline)
         }
     }
@@ -44,7 +80,9 @@ struct HomeView: View {
                 ForEach(pages, id: \.pageNumber) { page in
                     HStack(spacing: 0) {
                         Text("")
-                        PageItem(page: page)
+                        PageItem(page: page) {
+                            viewModel.onEvent(event: PagesEvent.PageClicked(page: page))
+                        }
                     }
                 }
             }
@@ -59,6 +97,95 @@ struct HomeView: View {
         }
         .listStyle(.plain)
         .padding(.horizontal, -20)
+    }
+
+    func GradeItem(emoji: String, textRes: StringResource, onItemClicked: @escaping () -> Void) -> some View {
+        Group {
+            GradeButton(emoji: emoji, textRes: textRes, onButtonClicked: onItemClicked)
+            Divider()
+        }
+        .padding(.vertical, 4)
+    }
+
+    func GradeButton(emoji: String, textRes: StringResource, onButtonClicked: @escaping () -> Void) -> some View {
+        Button(
+            action: onButtonClicked,
+            label: {
+                Text("\(emoji) " + getString(textRes))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        )
+    }
+}
+
+extension View {
+    @ViewBuilder
+    func modify(@ViewBuilder _ transform: (Self) -> (some View)?) -> some View {
+        if let view = transform(self), !(view is EmptyView) {
+            view
+        } else {
+            self
+        }
+    }
+
+    func customConfirmDialog<A: View>(isPresented: Binding<Bool>, @ViewBuilder actions: @escaping () -> A) -> some View {
+        return modifier(CustomConfirmDialogModifier(isPresented: isPresented, actions: actions))
+    }
+}
+
+struct CustomConfirmDialogModifier<A>: ViewModifier where A: View {
+    @Binding var isPresented: Bool
+    @ViewBuilder let actions: () -> A
+
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            ZStack(alignment: .bottom) {
+                if isPresented {
+                    Color.primary.opacity(0.2)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            isPresented = false
+                        }
+                        .transition(.opacity)
+                }
+
+                if isPresented {
+                    VStack {
+                        GroupBox {
+                            actions()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .clipShape(.rect(cornerRadius: 16))
+                        GroupBox {
+                            let cancelButtonLabel = Text("Cancel")
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            let cancelAction = { isPresented = false }
+                            if #available(iOS 15.0, *) {
+                                Button(
+                                    role: .cancel,
+                                    action: cancelAction,
+                                    label: { cancelButtonLabel }
+                                )
+                            } else {
+                                Button(
+                                    action: cancelAction,
+                                    label: { cancelButtonLabel }
+                                )
+                            }
+                        }
+                        .clipShape(.rect(cornerRadius: 16))
+                    }
+                    .font(.title3)
+                    .padding(8)
+                    .transition(.move(edge: .bottom))
+                }
+            }
+        }
+        .animation(.easeInOut, value: isPresented)
     }
 }
 
