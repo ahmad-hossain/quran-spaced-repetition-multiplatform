@@ -20,7 +20,8 @@ struct PageItem: View {
                     TableCell(String(page.pageNumber))
                     TableCell(String(page.interval))
                     TableCell(String(page.repetitions))
-                    TableCell(page.dueDate != nil ? "\(page.dueDate!)" : getString(SharedRes.strings().na))
+                    let relativeDueDate = PageUtil().relativeDueDate(page)
+                    TableCell(relativeDueDate != nil ? relativeDueDate! : getString(SharedRes.strings().na))
                 }
             }
         )
