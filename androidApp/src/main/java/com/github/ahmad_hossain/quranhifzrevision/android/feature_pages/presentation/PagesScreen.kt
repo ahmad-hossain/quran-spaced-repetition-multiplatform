@@ -67,6 +67,7 @@ import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.Pag
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.PagesViewModel
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.UiEvent
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.UiTabs
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.PageUtil.shouldGradePage
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.now
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -202,10 +203,9 @@ fun PagesScreen(
                         TableHeader()
                 }
                 items(state.displayedPages) { page ->
-                    val shouldGradePage = page.dueDate == null || page.dueDate!! <= LocalDate.now().toEpochDays()
                     PageItem(
                         modifier =
-                        if (shouldGradePage) Modifier.clickable { viewModel.onEvent(PagesEvent.PageClicked(page)) } else Modifier.alpha(0.38f),
+                        if (page.shouldGradePage) Modifier.clickable { viewModel.onEvent(PagesEvent.PageClicked(page)) } else Modifier.alpha(0.38f),
                         page = page
                     )
                 }

@@ -36,4 +36,7 @@ object PageUtil {
                 s += "${periodTillDueDate.days}D"
             return s.trim()
         }
+
+    val Page.shouldGradePage: Boolean
+        get() = dueDate == null || dueDate <= LocalDate.now().toEpochDays()
 }

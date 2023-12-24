@@ -83,6 +83,7 @@ struct HomeView: View {
                         PageItem(page: page) {
                             viewModel.onEvent(event: PagesEvent.PageClicked(page: page))
                         }
+                        .disabled(!PageUtil().shouldGradePage(page))
                     }
                 }
             }
