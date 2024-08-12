@@ -43,7 +43,6 @@ class SettingsViewModel(
                 state.value.copy(isTimePickerVisible = true)
             is SettingsEvent.PageNumberSettingClicked -> resetEditPageRangeDialogStates(isVisible = true)
             is SettingsEvent.TimePickerTimeChanged -> {
-                _state.value = state.value.copy(isTimePickerVisible = false)
                 _viewModelScope.launch {
                     settingsRepo.updateDatastore { it.copy(notificationTime = event.time) }
                     // TODO
@@ -52,6 +51,14 @@ class SettingsViewModel(
             }
             is SettingsEvent.TimePickerDismissed -> _state.value =
                 state.value.copy(isTimePickerVisible = false)
+            is SettingsEvent.TimePickerConfirmed -> {
+                _state.value = state.value.copy(isTimePickerVisible = false)
+                _viewModelScope.launch {
+                    settingsRepo.updateDatastore { it.copy(notificationTime = event.time) }
+                    // TODO
+//                    scheduleNotificationAlarmUseCase()
+                }
+            }
             is SettingsEvent.EditPageRangeDialogConfirmed -> {
                 _state.value = state.value.copy(isLoadingDialogVisible = true)
                 val newPageRange =

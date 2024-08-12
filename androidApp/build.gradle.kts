@@ -68,7 +68,4 @@ dependencies {
     // Kotlinx datetime
     implementation(libs.kotlinx.datetime)
     coreLibraryDesugaring(libs.android.desugar.jdk.libs)
-
-    // Material 3 Date & Time Pickers
-    implementation(libs.compose.material3.datetime.pickers)
 }

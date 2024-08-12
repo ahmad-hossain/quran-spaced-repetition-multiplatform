@@ -16,6 +16,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TimePickerState
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,13 +32,12 @@ import com.github.ahmad_hossain.quranhifzrevision.android.stringResource
 import com.github.ahmad_hossain.quranhifzrevision.feature_settings.presentation.SettingsEvent
 import com.github.ahmad_hossain.quranhifzrevision.feature_settings.presentation.SettingsUiEvent
 import com.github.ahmad_hossain.quranhifzrevision.feature_settings.presentation.SettingsViewModel
-import com.marosseleng.compose.material3.datetimepickers.time.ui.dialog.TimePickerDialog
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
+import kotlinx.datetime.LocalTime
 import kotlinx.datetime.toJavaLocalTime
-import kotlinx.datetime.toKotlinLocalTime
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -80,10 +80,10 @@ fun SettingsScreen(
 
     if (state.isTimePickerVisible) {
         TimePickerDialog(
-            title = { Text(stringResource(SharedRes.strings.select_time)) },
-            initialTime = state.userPreferences.notificationTime.toJavaLocalTime(),
-            onDismissRequest = { viewModel.onEvent(SettingsEvent.TimePickerDismissed) },
-            onTimeChange = { viewModel.onEvent(SettingsEvent.TimePickerTimeChanged(it.toKotlinLocalTime())) }
+            initialTime = state.userPreferences.notificationTime,
+            title = stringResource(SharedRes.strings.select_time),
+            onCancel = { viewModel.onEvent(SettingsEvent.TimePickerDismissed) },
+            onConfirm = { viewModel.onEvent(SettingsEvent.TimePickerConfirmed(it)) }
         )
     }
     EditPageRangeDialog(
@@ -137,15 +137,15 @@ fun SettingsScreen(
             SettingsSectionHeadline(text = stringResource(SharedRes.strings.revision))
             ListItem(
                 modifier = Modifier.clickable { viewModel.onEvent(SettingsEvent.PageNumberSettingClicked) },
-                headlineText = { Text(stringResource(SharedRes.strings.quran_pages_setting)) },
-                supportingText = { Text("${state.userPreferences.startPage} - ${state.userPreferences.endPage}") }
+                headlineContent = { Text(stringResource(SharedRes.strings.quran_pages_setting)) },
+                supportingContent = { Text("${state.userPreferences.startPage} - ${state.userPreferences.endPage}") }
             )
             Divider()
             SettingsSectionHeadline(text = stringResource(SharedRes.strings.notifications))
             ListItem(
                 modifier = Modifier.clickable { viewModel.onEvent(SettingsEvent.NotificationTimeSettingClicked) },
-                headlineText = { Text(stringResource(SharedRes.strings.notification_time_setting)) },
-                supportingText = {
+                headlineContent = { Text(stringResource(SharedRes.strings.notification_time_setting)) },
+                supportingContent = {
                     Text(
                         state.userPreferences.notificationTime.toJavaLocalTime().format(
                             DateTimeFormatter.ofPattern("hh:mm a")
@@ -158,15 +158,18 @@ fun SettingsScreen(
             ListItem(
                 modifier = Modifier.clickable { viewModel.onEvent(SettingsEvent.ExportDataClicked) },
                 leadingContent = { Icon(Icons.Default.Upload, contentDescription = null) },
-                headlineText = { Text(stringResource(SharedRes.strings.headline_export_data)) },
-                supportingText = { Text(stringResource(SharedRes.strings.supporting_export_data)) },
+                headlineContent = { Text(stringResource(SharedRes.strings.headline_export_data)) },
+                supportingContent = { Text(stringResource(SharedRes.strings.supporting_export_data)) },
             )
             ListItem(
                 modifier = Modifier.clickable { viewModel.onEvent(SettingsEvent.ImportDataClicked) },
                 leadingContent = { Icon(Icons.Default.Download, contentDescription = null) },
-                headlineText = { Text(stringResource(SharedRes.strings.headline_import_data)) },
-                supportingText = { Text(stringResource(SharedRes.strings.supporting_import_data)) },
+                headlineContent = { Text(stringResource(SharedRes.strings.headline_import_data)) },
+                supportingContent = { Text(stringResource(SharedRes.strings.supporting_import_data)) },
             )
         }
     }
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+private fun TimePickerState.toKtLocalTime() = LocalTime(hour, minute)

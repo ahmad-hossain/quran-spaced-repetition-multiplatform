@@ -6,6 +6,7 @@ sealed class SettingsEvent {
     object NotificationTimeSettingClicked : SettingsEvent()
     object PageNumberSettingClicked : SettingsEvent()
     object TimePickerDismissed : SettingsEvent()
+    data class TimePickerConfirmed(val time: LocalTime) : SettingsEvent()
     data class TimePickerTimeChanged(val time: LocalTime) : SettingsEvent()
     data class EditPageRangeDialogStartPageChanged(val startPage: String) : SettingsEvent()
     data class EditPageRangeDialogEndPageChanged(val endPage: String) : SettingsEvent()
