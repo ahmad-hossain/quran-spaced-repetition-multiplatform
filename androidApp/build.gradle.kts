@@ -10,7 +10,7 @@ val versionPatch = 1
 
 android {
     namespace = "com.github.ahmad_hossain.quranhifzrevision.android"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.github.ahmad_hossain.quranspacedrepetition"
         minSdk = 21
