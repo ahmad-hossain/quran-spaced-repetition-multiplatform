@@ -1,11 +1,11 @@
 val sqlDelightVersion = "2.0.0"
 
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
-    id("app.cash.sqldelight") version "2.0.0"
-    id("dev.icerock.mobile.multiplatform-resources")
+    alias(libs.plugins.multiplatform.kotlin)
+    alias(libs.plugins.cocoapods)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.sqldelight)
+    alias(libs.plugins.multiplatform.resources)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -44,13 +44,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-                implementation("app.cash.sqldelight:coroutines-extensions:2.0.0")
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.1")
-                implementation("app.cash.sqldelight:primitive-adapters:$sqlDelightVersion")
-                api("dev.icerock.moko:resources:0.23.0")
-                api("com.rickclephas.kmm:kmm-viewmodel-core:1.0.0-ALPHA-10")
-                implementation("androidx.datastore:datastore-preferences-core:1.1.0-alpha02")
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.sqldelight.coroutines.extensions)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.sqldelight.primitive.adapters)
+                api(libs.moko.resources)
+                api(libs.rickclephas.kmm.viewmodel.core)
+                implementation(libs.androidx.datastore.preferences.core)
             }
         }
         val commonTest by getting {
@@ -61,12 +61,12 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 dependsOn(commonMain) // Fixes moko build error due to kotlin 1.9.x version (https://github.com/icerockdev/moko-resources/issues/562)
-                implementation("app.cash.sqldelight:android-driver:$sqlDelightVersion")
+                implementation(libs.sqldelight.android.driver)
             }
         }
         val iosMain by getting {
             dependencies {
-                implementation("app.cash.sqldelight:native-driver:$sqlDelightVersion")
+                implementation(libs.sqldelight.native.driver)
             }
         }
     }
