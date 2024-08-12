@@ -7,11 +7,11 @@ import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.Pag
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.now
 import com.github.ahmadhossain.quranhifzrevision.Page
 import com.rickclephas.kmm.viewmodel.KMMViewModel
+import com.rickclephas.kmm.viewmodel.MutableStateFlow
 import com.rickclephas.kmm.viewmodel.coroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableSharedFlow
-import com.rickclephas.kmm.viewmodel.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn

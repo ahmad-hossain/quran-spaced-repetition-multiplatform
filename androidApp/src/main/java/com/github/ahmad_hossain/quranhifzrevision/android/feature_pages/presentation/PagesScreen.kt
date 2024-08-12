@@ -68,11 +68,9 @@ import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.Pag
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.UiEvent
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.UiTabs
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.PageUtil.shouldGradePage
-import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.now
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.datetime.LocalDate
 import kotlin.math.roundToInt
 
 private val FabHeight = 56.dp
