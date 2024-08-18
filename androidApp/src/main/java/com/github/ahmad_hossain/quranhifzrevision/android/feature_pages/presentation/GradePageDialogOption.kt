@@ -10,12 +10,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalAbsoluteTonalElevation
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -36,7 +34,7 @@ fun GradePageDialogOption(
 ) {
     val backgroundColor = if (selected)
         MaterialTheme.colorScheme.primary else
-        MaterialTheme.colorScheme.surfaceColorAtElevation(LocalAbsoluteTonalElevation.current)
+        MaterialTheme.colorScheme.surfaceContainerHigh
     CompositionLocalProvider(LocalContentColor provides contentColorFor(backgroundColor)) {
         Row(
             modifier
