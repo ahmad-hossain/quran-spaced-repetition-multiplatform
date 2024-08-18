@@ -9,8 +9,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Upload
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
@@ -138,7 +138,7 @@ fun SettingsScreen(
                 headlineContent = { Text(stringResource(SharedRes.strings.quran_pages_setting)) },
                 supportingContent = { Text("${state.userPreferences.startPage} - ${state.userPreferences.endPage}") }
             )
-            Divider()
+            HorizontalDivider()
             SettingsSectionHeadline(text = stringResource(SharedRes.strings.notifications))
             ListItem(
                 modifier = Modifier.clickable { viewModel.onEvent(SettingsEvent.NotificationTimeSettingClicked) },
@@ -151,7 +151,7 @@ fun SettingsScreen(
                     )
                 }
             )
-            Divider()
+            HorizontalDivider()
             SettingsSectionHeadline(text = stringResource(SharedRes.strings.backup))
             ListItem(
                 modifier = Modifier.clickable { viewModel.onEvent(SettingsEvent.ExportDataClicked) },
