@@ -34,7 +34,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
-import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
@@ -147,7 +146,7 @@ fun PagesScreen(
             .nestedScroll(nestedScrollConnection)
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            val containerColor = if (isListScrolled) MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp) else MaterialTheme.colorScheme.surface
+            val containerColor = if (isListScrolled) MaterialTheme.colorScheme.surfaceContainer else MaterialTheme.colorScheme.surface
             CenterAlignedTopAppBar(
                 title = { Text(stringResource(SharedRes.strings.revision)) },
                 scrollBehavior = scrollBehavior,
@@ -185,7 +184,7 @@ fun PagesScreen(
                 )
         ) {
             TabsSection(
-                containerColor = if (isListScrolled) MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp) else TabRowDefaults.containerColor,
+                containerColor = if (isListScrolled) MaterialTheme.colorScheme.surfaceContainer else MaterialTheme.colorScheme.surface,
                 selectedTab = state.selectedTab,
                 onTabClicked = { viewModel.onEvent(PagesEvent.TabClicked(it)) }
             )
