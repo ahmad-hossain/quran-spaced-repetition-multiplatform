@@ -27,7 +27,6 @@ import kotlinx.datetime.LocalTime
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TimePickerDialog(
-    modifier: Modifier = Modifier,
     initialTime: LocalTime,
     title: String,
     onCancel: () -> Unit,
