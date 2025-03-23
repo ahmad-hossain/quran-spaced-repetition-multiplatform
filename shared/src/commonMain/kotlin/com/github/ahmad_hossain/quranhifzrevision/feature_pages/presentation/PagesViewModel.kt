@@ -1,5 +1,6 @@
 package com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation
 
+import co.touchlab.kermit.Logger
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.SuperMemo
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.model.Page
@@ -38,8 +39,7 @@ open class PagesViewModel(
     val uiEvent = _uiEvent.asSharedFlow()
 
     fun onEvent(event: PagesEvent) {
-        // TODO
-//        Timber.d("%s : %s", event::class.simpleName, event.toString())
+        Logger.d("${event::class.simpleName} : $event")
 
         when (event) {
             is PageClicked -> {

@@ -8,6 +8,7 @@ coreSplashscreen = "1.0.0"
 coroutinesExtensions = "2.0.0"
 datastorePreferencesCore = "1.1.0-alpha02"
 desugar_jdk_libs = "2.0.3"
+kermit = "1.0.0"
 kmpViewmodelCore = "1.0.0-BETA-3"
 kotlin = "2.0.20"
 kotlinxCoroutinesCore = "1.7.3"
@@ -20,6 +21,7 @@ sqlite = "2.5.0-SNAPSHOT"
 [libraries]
 android-desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }

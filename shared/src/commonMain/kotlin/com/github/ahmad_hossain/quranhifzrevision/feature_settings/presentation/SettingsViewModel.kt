@@ -1,5 +1,6 @@
 package com.github.ahmad_hossain.quranhifzrevision.feature_settings.presentation
 
+import co.touchlab.kermit.Logger
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
 import com.github.ahmad_hossain.quranhifzrevision.feature_settings.domain.repository.SettingsRepository
 import com.github.ahmad_hossain.quranhifzrevision.feature_settings.domain.use_case.ChangePageRange
@@ -33,9 +34,7 @@ class SettingsViewModel(
     val uiEvent = _uiEvent.asSharedFlow()
 
     fun onEvent(event: SettingsEvent) {
-        // TODO
-//        Timber.d("%s : %s", event::class.simpleName, event.toString())
-        println("MYTAG ${event::class.simpleName} : $event")
+        Logger.d("${event::class.simpleName} : $event")
 
         when (event) {
             is SettingsEvent.NotificationTimeSettingClicked -> _state.value =
