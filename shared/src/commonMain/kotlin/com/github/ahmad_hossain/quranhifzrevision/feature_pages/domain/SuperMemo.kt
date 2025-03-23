@@ -1,4 +1,4 @@
-package com.github.ahmad_hossain.quranhifzrevision.feature_pages.data.domain
+package com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain
 
 import com.github.ahmadhossain.quranhifzrevision.Page
 import kotlin.math.roundToInt

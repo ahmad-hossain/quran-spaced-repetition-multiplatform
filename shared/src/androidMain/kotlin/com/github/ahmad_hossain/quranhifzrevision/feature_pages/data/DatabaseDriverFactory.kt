@@ -5,7 +5,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.github.ahmad_hossain.quranhifzrevision.PageDatabase
-import com.github.ahmad_hossain.quranhifzrevision.feature_pages.data.domain.InsertDefaultPages
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.InsertDefaultPages
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.PageUtil
 
 actual class DatabaseDriverFactory(

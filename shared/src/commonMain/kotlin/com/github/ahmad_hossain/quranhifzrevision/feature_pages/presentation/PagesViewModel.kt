@@ -2,7 +2,7 @@ package com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation
 
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.data.data_source.PageDataSource
-import com.github.ahmad_hossain.quranhifzrevision.feature_pages.data.domain.SuperMemo
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.SuperMemo
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.PagesEvent.*
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.now
 import com.github.ahmadhossain.quranhifzrevision.Page
