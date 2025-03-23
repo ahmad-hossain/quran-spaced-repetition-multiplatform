@@ -15,6 +15,8 @@ kotlinxDatetime = "0.4.1"
 ksp = "2.0.0-RC3-1.0.20"
 mokoResources = "0.24.0"
 sqlDelightVersion = "2.0.0"
+room = "2.7.0-alpha01"
+sqlite = "2.5.0-SNAPSHOT"
 
 [libraries]
 android-desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
@@ -39,6 +41,10 @@ sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", ver
 sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "coroutinesExtensions" }
 sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "coroutinesExtensions" }
 sqldelight-primitive-adapters = { module = "app.cash.sqldelight:primitive-adapters", version.ref = "sqlDelightVersion" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-runtime-android = { module = "androidx.room:room-runtime-android", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -50,3 +56,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 multiplatform-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelightVersion" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+room = { id = "androidx.room", version.ref = "room" }

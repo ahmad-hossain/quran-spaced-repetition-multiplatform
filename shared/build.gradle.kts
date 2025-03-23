@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.multiplatform.resources)
+    alias(libs.plugins.room)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -47,6 +49,8 @@ kotlin {
             api(libs.moko.resources)
             api(libs.rickclephas.kmp.viewmodel.core)
             implementation(libs.androidx.datastore.preferences.core)
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -72,12 +76,20 @@ android {
     }
 }
 
+dependencies {
+    ksp(libs.room.compiler)
+}
+
 sqldelight {
     databases {
         create("PageDatabase") {
             packageName.set("com.github.ahmad_hossain.quranhifzrevision")
         }
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 multiplatformResources {
