@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.sqldelight)
     alias(libs.plugins.multiplatform.resources)
     alias(libs.plugins.room)
     alias(libs.plugins.ksp)
@@ -43,9 +42,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.sqldelight.coroutines.extensions)
             implementation(libs.kotlinx.datetime)
-            implementation(libs.sqldelight.primitive.adapters)
             api(libs.moko.resources)
             api(libs.rickclephas.kmp.viewmodel.core)
             implementation(libs.androidx.datastore.preferences.core)
@@ -56,10 +53,8 @@ kotlin {
             implementation(libs.kotlin.test)
         }
         androidMain.dependencies {
-            implementation(libs.sqldelight.android.driver)
         }
         iosMain.dependencies {
-            implementation(libs.sqldelight.native.driver)
         }
     }
 }

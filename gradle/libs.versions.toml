@@ -14,7 +14,6 @@ kotlinxCoroutinesCore = "1.7.3"
 kotlinxDatetime = "0.4.1"
 ksp = "2.0.20-1.0.25"
 mokoResources = "0.24.0"
-sqlDelightVersion = "2.0.0"
 room = "2.7.0-alpha08"
 sqlite = "2.5.0-SNAPSHOT"
 
@@ -37,10 +36,6 @@ moko-resources-generator = { module = "dev.icerock.moko:resources-generator", ve
 raamcosta-compose-destinations-core = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "core" }
 raamcosta-compose-destinations-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "core" }
 rickclephas-kmp-viewmodel-core = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpViewmodelCore" }
-sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "coroutinesExtensions" }
-sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "coroutinesExtensions" }
-sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "coroutinesExtensions" }
-sqldelight-primitive-adapters = { module = "app.cash.sqldelight:primitive-adapters", version.ref = "sqlDelightVersion" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
@@ -53,6 +48,5 @@ kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = 
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 multiplatform-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
-sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelightVersion" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 room = { id = "androidx.room", version.ref = "room" }
