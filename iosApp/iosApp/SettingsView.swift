@@ -12,13 +12,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
-    @StateViewModel var viewModel = SettingsViewModel(
-        settingsRepo: Constants.dependencies.settingsRepository,
-        changePageRangeUseCase: ChangePageRange(
-            settingsRepo: Constants.dependencies.settingsRepository,
-            pageRepo: Constants.dependencies.pageDataSource
-        )
-    )
+    @StateViewModel var viewModel = Constants.dependencies.settingsViewModel
     private var notificationDateBinding: Binding<Date> {
         Binding(
             get: { viewModel.stateValue.userPreferences.notificationTime.toDate() },

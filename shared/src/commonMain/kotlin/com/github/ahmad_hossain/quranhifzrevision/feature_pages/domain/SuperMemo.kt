@@ -1,6 +1,6 @@
 package com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain
 
-import com.github.ahmadhossain.quranhifzrevision.Page
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.model.Page
 import kotlin.math.roundToInt
 
 /** Utilizes the SuperMemo 2 algorithm to calculate a Page's new interval, repetition, and eFactor */

@@ -9,8 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
 import com.github.ahmad_hossain.quranhifzrevision.android.stringResource
-import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.PageUtil.relativeDueDate
-import com.github.ahmadhossain.quranhifzrevision.Page
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.model.Page
 
 @Composable
 fun PageItem(

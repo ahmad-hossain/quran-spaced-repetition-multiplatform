@@ -37,7 +37,6 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -66,7 +65,6 @@ import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.Pag
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.PagesViewModel
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.UiEvent
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.UiTabs
-import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.PageUtil.shouldGradePage
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator

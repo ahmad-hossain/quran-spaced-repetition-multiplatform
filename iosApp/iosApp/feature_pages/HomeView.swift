@@ -11,7 +11,7 @@ import shared
 import SwiftUI
 
 struct HomeView: View {
-    @StateViewModel var viewModel = PagesViewModel(dataSource: Constants.dependencies.pageDataSource)
+    @StateViewModel var viewModel = Constants.dependencies.pagesViewModel
     let strings = SharedRes.strings()
     private var selectedTabBinding: Binding<Int> {
         Binding(
@@ -83,7 +83,7 @@ struct HomeView: View {
                         PageItem(page: page) {
                             viewModel.onEvent(event: PagesEvent.PageClicked(page: page))
                         }
-                        .disabled(!PageUtil().shouldGradePage(page))
+                        .disabled(!page.shouldGradePage)
                     }
                 }
             }

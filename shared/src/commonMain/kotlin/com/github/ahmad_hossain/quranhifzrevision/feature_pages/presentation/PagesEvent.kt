@@ -1,6 +1,7 @@
 package com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation
 
-import com.github.ahmadhossain.quranhifzrevision.Page
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.model.Page
+
 
 sealed class PagesEvent {
     data class PageClicked(val page: Page) : PagesEvent()

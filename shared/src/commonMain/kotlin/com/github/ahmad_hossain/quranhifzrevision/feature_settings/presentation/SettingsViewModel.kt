@@ -23,7 +23,6 @@ class SettingsViewModel(
 //    private val app: Application,
 //    private val validSqlLiteDbUseCase: ValidSqlLiteDb,
 //    private val db: PageDatabase,
-//    private val pageRepository: PageDataSource,
     private val changePageRangeUseCase: ChangePageRange,
 ) : ViewModel() {
     private val _viewModelScope = viewModelScope.coroutineScope

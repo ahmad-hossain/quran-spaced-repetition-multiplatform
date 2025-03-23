@@ -1,11 +1,11 @@
 package com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation
 
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
-import com.github.ahmad_hossain.quranhifzrevision.feature_pages.data.data_source.PageDataSource
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.SuperMemo
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.model.Page
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.repository.PageRepository
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.PagesEvent.*
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.now
-import com.github.ahmadhossain.quranhifzrevision.Page
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.coroutineScope
@@ -23,7 +23,7 @@ import kotlinx.datetime.plus
 
 
 open class PagesViewModel(
-    private val dataSource: PageDataSource,
+    private val pageRepository: PageRepository,
     // TODO
 //    private val updateReminderNotificationUseCase: UpdateReminderNotification,
 ) : ViewModel() {
@@ -69,9 +69,9 @@ open class PagesViewModel(
 
                 val updatedPage = SuperMemo(page = lastClickedPage, grade = grade)
                 _viewModelScope.launch(Dispatchers.IO) {
-                    dataSource.updatePage(
+                    pageRepository.updatePage(
                         updatedPage.copy(
-                            dueDate = LocalDate.now().plus(DatePeriod(days = updatedPage.interval)).toEpochDays().toLong()
+                            dueDate = LocalDate.now().plus(DatePeriod(days = updatedPage.interval))
                         )
                     )
                     // TODO
@@ -120,14 +120,14 @@ open class PagesViewModel(
     }
 
     init {
-        dataSource.getPagesDueToday().onEach {
+        pageRepository.getPagesDueToday().onEach {
             _state.value = state.value.copy(
                 displayedPages = if (state.value.selectedTab == UiTabs.TODAY) it else state.value.displayedPages,
                 pagesDueToday = it
             )
         }.launchIn(_viewModelScope)
 
-        dataSource.getPages().onEach {
+        pageRepository.getPages().onEach {
             _state.value = state.value.copy(
                 displayedPages = if (state.value.selectedTab == UiTabs.ALL) it else state.value.displayedPages,
                 allPages = it

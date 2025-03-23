@@ -1,6 +1,6 @@
 package com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation
 
-import com.github.ahmadhossain.quranhifzrevision.Page
+import com.github.ahmad_hossain.quranhifzrevision.feature_pages.domain.model.Page
 import dev.icerock.moko.resources.StringResource
 
 enum class UiTabs {

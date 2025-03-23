@@ -76,20 +76,12 @@ android {
     }
 }
 
-dependencies {
-    ksp(libs.room.compiler)
-}
-
-sqldelight {
-    databases {
-        create("PageDatabase") {
-            packageName.set("com.github.ahmad_hossain.quranhifzrevision")
-        }
-    }
-}
-
 room {
     schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    ksp(libs.room.compiler)
 }
 
 multiplatformResources {
