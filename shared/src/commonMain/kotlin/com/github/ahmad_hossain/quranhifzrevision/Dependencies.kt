@@ -13,7 +13,7 @@ import com.github.ahmadhossain.quranhifzrevision.Page
 
 abstract class Dependencies {
     abstract val driver: SqlDriver
-    val database: PageDatabase by lazy {
+    private val database: PageDatabase by lazy {
         PageDatabase(
             driver,
             Page.Adapter(
@@ -23,9 +23,9 @@ abstract class Dependencies {
             )
         )
     }
-    val pageDataSource by lazy { PageDataSource(database, driver) }
+    private val pageDataSource by lazy { PageDataSource(database, driver) }
     abstract val dataStore: Lazy<DataStore<Preferences>>
-    val settingsRepository by lazy { SettingsRepository(dataStore.value) }
+    private val settingsRepository by lazy { SettingsRepository(dataStore.value) }
     val pagesViewModel: PagesViewModel by lazy { PagesViewModel(pageDataSource) }
     val settingsViewModel: SettingsViewModel by lazy {
         SettingsViewModel(
