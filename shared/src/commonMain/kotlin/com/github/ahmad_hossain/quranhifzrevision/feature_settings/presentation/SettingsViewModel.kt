@@ -3,9 +3,9 @@ package com.github.ahmad_hossain.quranhifzrevision.feature_settings.presentation
 import com.github.ahmad_hossain.quranhifzrevision.SharedRes
 import com.github.ahmad_hossain.quranhifzrevision.feature_settings.domain.repository.SettingsRepository
 import com.github.ahmad_hossain.quranhifzrevision.feature_settings.domain.use_case.ChangePageRange
-import com.rickclephas.kmm.viewmodel.KMMViewModel
-import com.rickclephas.kmm.viewmodel.MutableStateFlow
-import com.rickclephas.kmm.viewmodel.coroutineScope
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.coroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,7 +25,7 @@ class SettingsViewModel(
 //    private val db: PageDatabase,
 //    private val pageRepository: PageDataSource,
     private val changePageRangeUseCase: ChangePageRange,
-) : KMMViewModel() {
+) : ViewModel() {
     private val _viewModelScope = viewModelScope.coroutineScope
 
     private val _state = MutableStateFlow(viewModelScope, SettingsState())

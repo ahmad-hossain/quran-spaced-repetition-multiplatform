@@ -6,7 +6,7 @@
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
-import KMMViewModelSwiftUI
+import KMPObservableViewModelSwiftUI
 import shared
 import SwiftUI
 

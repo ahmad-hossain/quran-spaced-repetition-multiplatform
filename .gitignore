@@ -68,3 +68,5 @@ tmp/**/*
 
 # DS Store
 *.DS_Store
+
+.kotlin

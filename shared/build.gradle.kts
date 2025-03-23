@@ -1,26 +1,20 @@
-val sqlDelightVersion = "2.0.0"
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.multiplatform.kotlin)
-    alias(libs.plugins.cocoapods)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinCocoapods)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.multiplatform.resources)
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
-
-    android {
+    androidTarget {
         compilations.all {
-            // Fixes 'target compatibility' compile-time error
-            tasks.withType(JavaCompile::class.java) {
-                targetCompatibility = "11"
-                sourceCompatibility = "11"
-            }
-            kotlinOptions {
-                jvmTarget = "11"
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_18)
+                }
             }
         }
     }
@@ -32,42 +26,36 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
-        ios.deploymentTarget = "14.1"
+        ios.deploymentTarget = "16.0"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
-            export("dev.icerock.moko:resources:0.23.0")
-            export("dev.icerock.moko:graphics:0.9.0")
+            isStatic = false
+            export(libs.moko.resources)
         }
     }
-    
+
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.sqldelight.coroutines.extensions)
-                implementation(libs.kotlinx.datetime)
-                implementation(libs.sqldelight.primitive.adapters)
-                api(libs.moko.resources)
-                api(libs.rickclephas.kmm.viewmodel.core)
-                implementation(libs.androidx.datastore.preferences.core)
-            }
+        all {
+            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
+        commonMain.dependencies {
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.sqldelight.coroutines.extensions)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.sqldelight.primitive.adapters)
+            api(libs.moko.resources)
+            api(libs.rickclephas.kmp.viewmodel.core)
+            implementation(libs.androidx.datastore.preferences.core)
         }
-        val androidMain by getting {
-            dependencies {
-                dependsOn(commonMain) // Fixes moko build error due to kotlin 1.9.x version (https://github.com/icerockdev/moko-resources/issues/562)
-                implementation(libs.sqldelight.android.driver)
-            }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
         }
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.sqldelight.native.driver)
-            }
+        androidMain.dependencies {
+            implementation(libs.sqldelight.android.driver)
+        }
+        iosMain.dependencies {
+            implementation(libs.sqldelight.native.driver)
         }
     }
 }
@@ -77,6 +65,10 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 21
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
 }
 
@@ -89,6 +81,6 @@ sqldelight {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "com.github.ahmad_hossain.quranhifzrevision"
-    multiplatformResourcesClassName = "SharedRes"
+    resourcesPackage.set("com.github.ahmad_hossain.quranhifzrevision")
+    resourcesClassName.set("SharedRes")
 }

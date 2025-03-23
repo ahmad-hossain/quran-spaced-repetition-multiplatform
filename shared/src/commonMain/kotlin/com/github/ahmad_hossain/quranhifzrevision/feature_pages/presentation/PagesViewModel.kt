@@ -6,9 +6,9 @@ import com.github.ahmad_hossain.quranhifzrevision.feature_pages.data.domain.Supe
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.presentation.PagesEvent.*
 import com.github.ahmad_hossain.quranhifzrevision.feature_pages.util.now
 import com.github.ahmadhossain.quranhifzrevision.Page
-import com.rickclephas.kmm.viewmodel.KMMViewModel
-import com.rickclephas.kmm.viewmodel.MutableStateFlow
-import com.rickclephas.kmm.viewmodel.coroutineScope
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
+import com.rickclephas.kmp.observableviewmodel.ViewModel
+import com.rickclephas.kmp.observableviewmodel.coroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -21,11 +21,12 @@ import kotlinx.datetime.DatePeriod
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.plus
 
+
 open class PagesViewModel(
     private val dataSource: PageDataSource,
     // TODO
 //    private val updateReminderNotificationUseCase: UpdateReminderNotification,
-) : KMMViewModel() {
+) : ViewModel() {
 
     private val _viewModelScope = viewModelScope.coroutineScope
 
